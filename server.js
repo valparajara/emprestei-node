@@ -1,8 +1,9 @@
 'use strict';
 
-var express = require('express')
- , app = express();
- app.get('/', function(req, res){
-   res.send('Hello World!');
+
+var app = require('./app');
+var port = process.env.PORT || 3000;
+
+var server = app.listen(port, function() {
+  console.log('Aplicação rodando na porta ' + port);
 });
-app.listen(3000);
