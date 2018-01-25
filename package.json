@@ -7,10 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valparajara/emprestei-node.git"
+  },
   "author": "Valéria Parajara",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.1.2",
     "express": "^4.16.2",
+    "mocha": "^5.0.0",
+    "mongoq": "^0.2.5",
     "nodemon": "^1.14.11"
   }
 }
