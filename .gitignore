@@ -1,2 +1,4 @@
+
 npm-debug.log
-db.js
+config/database.js
+node_modules/
