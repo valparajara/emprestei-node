@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 
 var UserSchema = mongoose.Schema({
-    name: String,
-    content: String
+    email: String
 });
+
+// embeds_many :loans
 
 module.exports = mongoose.model('User', UserSchema);
