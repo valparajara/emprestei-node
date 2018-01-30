@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var UserSchema = mongoose.Schema({
-    email: String
+    email: String,
+    password: String
 });
 
 // embeds_many :loans
