@@ -1,7 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var dbConfig = require('./config/database.js');
-var mongoose = require('mongoose');
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var dbConfig    = require('./config/database.js');
+var mongoose    = require('mongoose');
+var morgan      = require('morgan');
+var passport	= require('passport');
+var User        = require('./app/models/user'); // get the mongoose model
+var jwt         = require('jwt-simple');
 
 var app = express();
 
@@ -18,7 +22,12 @@ mongoose.connection.once('open', function() {
     console.log("Successfully connected to the database");
 })
 
-
+// log to console
+app.use(morgan('dev'));
+ 
+// Use the passport package in our application
+app.use(passport.initialize());
+ 
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json())
