@@ -1,4 +1,4 @@
-var model = require('./app/models/user')
+var model = require('./models/user.js')
 var jwt = require('jwt-simple')
 var segredo = 'seusegredodetoken';
 

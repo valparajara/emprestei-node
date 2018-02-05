@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var jwt = require('jwt-simple');
-var validarJWT = require('./validajwt');
+var validaJWT = require('./app/util/validajwt.js');
 
 var db = require('./config/database.js');//coloque a url do db aqui
 
@@ -18,9 +18,9 @@ router.use('/login', login);
 
 var routes = require('./app/routes')
   router.route('/user')
-    .post(validarJWT, routes.create);
-    .put(validarJWT, routes.update);
-    .delete(validarJWT, routes.delete);
+    .post(validaJWT, routes.create);
+    .put(validaJWT, routes.update);
+    .delete(validaJWT, routes.delete);
   router.route('/login')
     .post(routes.login);
 

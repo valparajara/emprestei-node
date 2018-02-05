@@ -1,4 +1,4 @@
-var Usuario = require('./models/user');
+var Usuario = require('./models/user.js');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var segredo = 'empresteiasuaapideemprestimo';
