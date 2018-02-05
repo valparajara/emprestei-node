@@ -3,22 +3,24 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var jwt = require('jwt-simple');
-  
+var validarJWT = require('./validajwt');
 
 var db = require('./config/database.js');//coloque a url do db aqui
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 var router = express.Router();
   
 app.use('/', router);
+router.use('/login', login);
 
 var routes = require('./app/routes')
-  router.route('/users')
-    .get(routes.getUsuarios)
-    .post(routes.postUsuarios);
+  router.route('/user')
+    .post(validarJWT, routes.create);
+    .put(validarJWT, routes.update);
+    .delete(validarJWT, routes.delete);
   router.route('/login')
     .post(routes.login);
 

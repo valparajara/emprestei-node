@@ -8,14 +8,3 @@ module.exports = function(app) {
 
     app.delete('/users/:userId', users.delete);
 }
-
-
-// module.exports = {
-//   getUsuarios: function(req, res){
-//     res.json({message: "rota para GET do /usuarios"})
-//   },
-//   postUsuarios: function(req, res){
-//     res.json({message: "rota para POST do /usuarios"})
-//   }
-// }
-

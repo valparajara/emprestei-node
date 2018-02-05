@@ -1,5 +1,7 @@
-module.exports = {
-  login: function(req, res){
-  	res.json({message; 'rota de login'})
-  }
+module.exports = function(app) {
+
+    var login = require('../controllers/login.js');
+    
+    app.get('/login', get.create);
+
 }
