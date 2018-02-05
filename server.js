@@ -1,29 +1,30 @@
-var express     = require('express');
-var bodyParser  = require('body-parser');
-var dbConfig    = require('./config/database.js');
-var mongoose    = require('mongoose');
-var morgan      = require('morgan');
-var passport	= require('passport');
-var User        = require('./app/models/user'); // get the mongoose model
-var jwt         = require('jwt-simple');
-
+var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var jwt = require('jwt-simple');
+var validaJWT = require('./app/util/validajwt.js');
 
-// log to console
-app.use(morgan('dev'));
- 
-// Use the passport package in our application
-app.use(passport.initialize());
- 
-app.use(bodyParser.urlencoded({ extended: true }))
+var db = require('./config/database.js');//coloque a url do db aqui
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/', function(req, res){
-    res.json({"message": "Bem Vindo ao Emprestei 2.0"});
-});
+var port = process.env.PORT || 3000;
+var router = express.Router();
+  
+app.use('/', router);
+router.use('/login', login);
 
-app.listen(3000, function(){
-    console.log("Server is listening on port 3000");
-});	
+var routes = require('./app/routes')
+  router.route('/user')
+    .post(validaJWT, routes.create);
+    .put(validaJWT, routes.update);
+    .delete(validaJWT, routes.delete);
+  router.route('/login')
+    .post(routes.login);
 
+mongoose.connect(db);
+
+app.listen(port);
+console.log('conectado a porta ' + port);
