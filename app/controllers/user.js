@@ -5,7 +5,7 @@ exports.create = function(req, res) {
     if(!req.body.content) {
         res.status(400).send({message: "User can not be empty"});
     }
-    var user = new User({email: req.body.email || "Untitled User", content: req.body.content});
+    var user = new User({email: req.body.email, password: req.body.password || "Untitled User", content: req.body.content});
 
     user.save(function(err, data) {
         console.log(data);
@@ -32,7 +32,7 @@ exports.update = function(req, res) {
             if(err) {
                 res.status(500).send({message: "Could not update user with id " + req.params.userId});
             } else {
-                res.send(data);
+                res.send(data); 
             }
         });
     });
