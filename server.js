@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const app = express();
 const express = require('express');
@@ -26,6 +26,8 @@ const routes = require('./app/routes')
     .delete(validaJWT, routes.delete);
   router.route('/login')
     .post(routes.login);
+
+mongoose.connect(db);
 
 app.listen(port);
 console.log('conectado a porta ' + port);
